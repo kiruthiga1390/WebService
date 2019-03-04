@@ -11,21 +11,55 @@ $(document).ready(function(){
 	$("#submit").click(function(){
 		url = "http://localhost:8080/Patient_Monitoring/rest/WebService/getpatientdetails?patientId=" + 
 				$('#form1').find('input[name="patientId"]').val();
+		
 	    $.get(url, function(data,status){
-	      alert("Data: " + data + "\nStatus: " + status);
-	    });
+	      //alert("Data: " + data + "\nStatus: " + status);
+	      xmlString = (new XMLSerializer()).serializeToString(data);
+	      alert(xmlString);
+	      /*  $(data).filter('patient').each(function(){
+	          var $show = $(this);
+	          var txtdata = {
+	            id: $show.find('id').text(),
+	            name: $show.find('name').text(),
+	            age: $show.find('age').text(),
+	            insurance: $show.find('insurance').text(),
+	            address: $show.find('address').text()
+	          };
+
+	          var row = $('<tr />');
+	          for (var prop in txtdata) {
+	            $('<td>' + txtdata[prop] + '</td>').appendTo(row);  
+	          }
+	          
+	          $('#t01').append(row); 
+	          
+	          
+	    }); */
+	    $("#tx1").val(xmlString);
+	      $("#tx1").css("display","block");
 	  });
-	
-    $("#formButton").click(function(){
+    
+    
+    });
+	$("#formButton").click(function(){
         $("#form1").toggle();
     });
-    
 });
-// 
-$
+
 </script>
 <style>
 #form1 {
+
+display:none;
+
+}
+#t01 {
+
+display:none;
+
+}
+
+#tx1 {
 
 display:none;
 
@@ -42,6 +76,18 @@ display:none;
   <b>Patient ID:</b> <input type="text" name="patientId" id="patientId">
    <button type="button" id="submit">Submit</button>
 </form>
+
+<table id="t01" border="2" style="width:auto" align="center">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Insurance</th>
+    <th>Address</th>
+  </tr>
+</table>
+
+<textarea id="tx1"></textarea>
 
 </body>
 </html>
