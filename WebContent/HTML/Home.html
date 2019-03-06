@@ -12,31 +12,32 @@ $(document).ready(function(){
 		url = "http://localhost:8080/Patient_Monitoring/rest/WebService/getpatientdetails?patientId=" + 
 				$('#form1').find('input[name="patientId"]').val();
 		
-	    $.get(url, function(data,status){
+	    $.get(url, function(data){
 	      //alert("Data: " + data + "\nStatus: " + status);
 	      xmlString = (new XMLSerializer()).serializeToString(data);
 	      alert(xmlString);
-	      /*  $(data).filter('patient').each(function(){
-	          var $show = $(this);
-	          var txtdata = {
-	            id: $show.find('id').text(),
-	            name: $show.find('name').text(),
-	            age: $show.find('age').text(),
-	            insurance: $show.find('insurance').text(),
-	            address: $show.find('address').text()
-	          };
+	      var xmldata = $.parseXML(xmlString);
+	      var jqObj = $(xmldata);
+	            var patient = jqObj.find('patient');
+	            var id= patient.find('id').text();
+	            var name= patient.find('name').text();
+	            var age=patient.find('age').text();
+	            var insurance=patient.find('insurance').text();
+	            var address =patient.find('address').text();
+	      
 
 	          var row = $('<tr />');
-	          for (var prop in txtdata) {
-	            $('<td>' + txtdata[prop] + '</td>').appendTo(row);  
-	          }
+	        
+	            $('<td>' + id + '</td>').appendTo(row);  
+	            $('<td>' + name + '</td>').appendTo(row); 
+	            $('<td>' + age + '</td>').appendTo(row); 
+	            $('<td>' + insurance + '</td>').appendTo(row); 
+	            $('<td>' + address + '</td>').appendTo(row);
 	          
 	          $('#t01').append(row); 
-	          
-	          
-	    }); */
-	    $("#tx1").val(xmlString);
-	      $("#tx1").css("display","block");
+	           
+	       $('#t01').css("display","block");
+	    
 	  });
     
     
@@ -59,11 +60,7 @@ display:none;
 
 }
 
-#tx1 {
 
-display:none;
-
-}
 </style>
 
 <body>
@@ -87,7 +84,6 @@ display:none;
   </tr>
 </table>
 
-<textarea id="tx1"></textarea>
 
 </body>
 </html>

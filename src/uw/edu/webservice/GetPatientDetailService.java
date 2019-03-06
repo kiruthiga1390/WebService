@@ -23,7 +23,7 @@ public class GetPatientDetailService {
 	@Path("/getpatientdetails")
 	@Produces(MediaType.APPLICATION_XML)
 	public PatientVO patient( @QueryParam("patientId") String patientId)  {
-        System.out.println("Inside get method"+patientId);
+        //System.out.println("Inside get method"+patientId);
 		PatientVO patient = getPatientDetails(patientId);
 		return patient;
 		
@@ -43,5 +43,41 @@ public class GetPatientDetailService {
 		return patient;
 		
 	}
+	
+	@POST
+	@Path("/addpatientdetails")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public String patient(@FormParam("id") String id,
+			@FormParam("name") String name,@FormParam("age") String age,@FormParam("address") String address,@FormParam("insurance") String insurance)  {
+        //System.out.println("Inside get method"+patientId);
+		PatientVO patient = new PatientVO();
+		patient.setId(id);
+		patient.setAddress(address);
+		patient.setAge(age);
+		patient.setInsurance(insurance);
+		patient.setName(name);
+		
+		String output = addNewPatient(patient);
+		
+		return output;
+
+	}
+	
+	public String addNewPatient(PatientVO patient){
+		
+		try {
+			//System.out.println(" web service name is:"+patient.getName());
+			PatientDetailController pc = new PatientDetailController();
+			pc.addNewPatient(patient);	
+
+		} catch (Exception e) {
+			//System.out.println(e.getMessage());
+			System.out.println("Patient details are not added.Please try again");
+		}
+		return "Patient Details are added Successfully";
+		
+	}
+	
+
 
 }

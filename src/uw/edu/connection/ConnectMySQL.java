@@ -89,7 +89,7 @@ public class ConnectMySQL {
 	//get all users from database - patient table
 		public PatientVO  getPatientDetails(String patientId)
 				throws Exception {
-			System.out.println("Inside get patient details");
+			//System.out.println("Inside get patient details");
 			PatientVO patient = new PatientVO();
 			try {
 				Connection c = getConnection();
@@ -97,10 +97,10 @@ public class ConnectMySQL {
 				PreparedStatement ps = c
 						.prepareStatement("SELECT * FROM patients where id= ?");
 				ps.setString(1,patientId);
-				System.out.println("stmt is"+ps);
+				//System.out.println("stmt is"+ps);
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()){
-				System.out.println("name is"+rs.getString("name"));
+				//System.out.println("name is"+rs.getString("name"));
 				patient.setName(rs.getString("name"));
 				patient.setAge(rs.getString("age"));	
 				patient.setInsurance(rs.getString("insurance"));	
@@ -114,5 +114,32 @@ public class ConnectMySQL {
 				throw e;
 			}
 		}
+		
+		//add new  patient into database - patient table
+				public void  addNewPatient(PatientVO patient)
+						throws Exception {
+					//System.out.println("Inside get patient details");
+					//System.out.println(" database name is:"+patient.getName());
+					try {
+						Connection c = getConnection();
+						
+						String query = "insert into patients (id, name, age, insurance, address)"
+						        + " values (?, ?, ?, ?, ?)";
+						
+						PreparedStatement ps = c
+								.prepareStatement(query);
+						ps.setString(1,patient.getId());
+						ps.setString(2,patient.getName());
+						ps.setString(3,patient.getAge());
+						ps.setString(4,patient.getInsurance());
+						ps.setString(5,patient.getAddress());
+						//System.out.println("stmt is"+ps);
+						ps.execute();
+						closeconnection();
+						
+					} catch (Exception e) {
+						throw e;
+					}
+				}
 
 }
