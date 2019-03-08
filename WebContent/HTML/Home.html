@@ -42,8 +42,52 @@ $(document).ready(function(){
     
     
     });
+	$("#submit2").click(function(){
+		url = "http://localhost:8080/Patient_Monitoring/rest/WebService/getpatienthistory?patientId=" + 
+				$('#form2').find('input[name="patientId"]').val();
+		
+	    $.get(url, function(data){
+	      //alert("Data: " + data + "\nStatus: " + status);
+	      xmlString = (new XMLSerializer()).serializeToString(data);
+	      alert(xmlString);
+	      var xmldata = $.parseXML(xmlString);
+	      var jqObj = $(xmldata);
+	            var patient = jqObj.find('patient');
+	            var id= patient.find('id').text();
+	            var admisiondate= patient.find('admisiondate').text();
+	            var dischargeDate=patient.find('dischargeDate').text();
+	            var treatementName=patient.find('treatementName').text();
+	            var medicine =patient.find('medicine').text();
+	            var dosage =patient.find('dosage').text();
+
+	         
+	          var row = $('<tr />');
+	        
+	            $('<td>' + id + '</td>').appendTo(row);  
+	            $('<td>' + admisiondate + '</td>').appendTo(row); 
+	            $('<td>' + dischargeDate + '</td>').appendTo(row); 
+	            $('<td>' + treatementName + '</td>').appendTo(row); 
+	            $('<td>' + medicine + '</td>').appendTo(row);
+	            $('<td>' + dosage + '</td>').appendTo(row);
+	            
+	          $('#t02').append(row); 
+	           
+	       $('#t02').css("display","block");
+	    
+	  });
+    
+    
+    });
+	
+	
+	
+	
 	$("#formButton").click(function(){
         $("#form1").toggle();
+    });
+	
+	$("#formButton2").click(function(){
+        $("#form2").toggle();
     });
 });
 
@@ -59,19 +103,33 @@ display:none;
 display:none;
 
 }
+#form2 {
+
+display:none;
+
+}
+#t02 {
+
+display:none;
+
+}
 
 
 </style>
 
 <body>
 <button type="button"  id="formButton">GetPatientDetail</button>
-<button type="button" onclick="myFunction()">GetPatientHistory</button>
+<button type="button" id="formButton2">GetPatientHistory</button>
 <button type="button" onclick="myFunction()">GetBilling</button>
 
 
 <form id="form1" action="#" >
   <b>Patient ID:</b> <input type="text" name="patientId" id="patientId">
    <button type="button" id="submit">Submit</button>
+</form>
+<form id="form2" action="#" >
+  <b>Patient ID:</b> <input type="text" name="patientId" id="patientId">
+   <button type="button" id="submit2">Submit</button>
 </form>
 
 <table id="t01" border="2" style="width:auto" align="center">
@@ -81,6 +139,17 @@ display:none;
     <th>Age</th>
     <th>Insurance</th>
     <th>Address</th>
+  </tr>
+</table>
+
+<table id="t02" border="2" style="width:auto" align="center">
+  <tr>
+    <th>ID</th>
+    <th>AdmisionDate</th>
+    <th>DischargeDate</th>
+    <th>TreatmentName</th>
+    <th>Medicine</th>
+     <th>Dosage</th>
   </tr>
 </table>
 
