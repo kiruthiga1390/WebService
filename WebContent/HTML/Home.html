@@ -54,7 +54,7 @@ $(document).ready(function(){
 	      var jqObj = $(xmldata);
 	            var patient = jqObj.find('patient');
 	            var id= patient.find('id').text();
-	            var admisiondate= patient.find('admisiondate').text();
+	            var admissiondate= patient.find('admissiondate').text();
 	            var dischargeDate=patient.find('dischargeDate').text();
 	            var treatementName=patient.find('treatementName').text();
 	            var medicine =patient.find('medicine').text();
@@ -64,7 +64,7 @@ $(document).ready(function(){
 	          var row = $('<tr />');
 	        
 	            $('<td>' + id + '</td>').appendTo(row);  
-	            $('<td>' + admisiondate + '</td>').appendTo(row); 
+	            $('<td>' + admissiondate + '</td>').appendTo(row); 
 	            $('<td>' + dischargeDate + '</td>').appendTo(row); 
 	            $('<td>' + treatementName + '</td>').appendTo(row); 
 	            $('<td>' + medicine + '</td>').appendTo(row);
@@ -145,7 +145,7 @@ display:none;
 <table id="t02" border="2" style="width:auto" align="center">
   <tr>
     <th>ID</th>
-    <th>AdmisionDate</th>
+    <th>AdmissionDate</th>
     <th>DischargeDate</th>
     <th>TreatmentName</th>
     <th>Medicine</th>

@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class PatientHistoryVO {
 	private String id;
-	private String admisiondate;
+	private String admissiondate;
 	private String dischargeDate;
 	private String treatementName;
 	private String medicine ;
@@ -22,11 +22,11 @@ public class PatientHistoryVO {
 		this.id = id;
 	}
 	@XmlElement
-	public String getadmisiondate() {
-		return admisiondate;
+	public String getadmissiondate() {
+		return admissiondate;
 	}
-	public void setadmisiondate(String admisionDate) {
-		this.admisiondate = admisionDate;
+	public void setadmissiondate(String admissionDate) {
+		this.admissiondate = admissionDate;
 	}
 	@XmlElement
 	public String getdischargeDate() {

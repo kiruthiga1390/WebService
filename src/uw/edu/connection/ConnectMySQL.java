@@ -159,7 +159,7 @@ public class ConnectMySQL {
 						while(rsd.next()){
 						//System.out.println("name is"+rs.getString("name"));
 						patient.setId(rsd.getString("id"));	
-						patient.setadmisiondate(rsd.getString("admisiondate"));
+						patient.setadmissiondate(rsd.getString("admissiondate"));
 						patient.setdischargeDate(rsd.getString("dischargeDate"));	
 						patient.settreatementName(rsd.getString("treatmentName"));	
 						patient.setmedicine(rsd.getString("medicine"));
