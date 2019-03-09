@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import uw.edu.VO.UserVO;
+import uw.edu.VO.PatientHistoryVO;
 import uw.edu.VO.PatientVO;
 
 public class ConnectMySQL {
@@ -136,6 +137,37 @@ public class ConnectMySQL {
 						//System.out.println("stmt is"+ps);
 						ps.execute();
 						closeconnection();
+						
+					} catch (Exception e) {
+						throw e;
+					}
+				}
+
+				//get patient history users from database - patient table
+				public PatientHistoryVO  getPatientHistory(String patientId)
+						throws Exception {
+					//System.out.println("Inside get patient details");
+					PatientHistoryVO patient = new PatientHistoryVO();
+					try {
+						Connection c = getConnection();
+						
+						PreparedStatement pss = c
+								.prepareStatement("SELECT * FROM patienthistory where id= ?");
+						pss.setString(1,patientId);
+						//System.out.println("stmt is"+ps);
+						ResultSet rsd = pss.executeQuery();
+						while(rsd.next()){
+						//System.out.println("name is"+rs.getString("name"));
+						patient.setId(rsd.getString("id"));	
+						patient.setadmissiondate(rsd.getString("admissiondate"));
+						patient.setdischargeDate(rsd.getString("dischargeDate"));	
+						patient.settreatementName(rsd.getString("treatmentName"));	
+						patient.setmedicine(rsd.getString("medicine"));
+						patient.setdosage(rsd.getString("dosage"));
+					
+						}
+						closeconnection();
+						return patient;
 						
 					} catch (Exception e) {
 						throw e;
