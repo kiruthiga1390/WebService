@@ -33,5 +33,4 @@ public class PatientDetailController {
 			throw ex;
 		}	
 	}
-	
 }
