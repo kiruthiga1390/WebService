@@ -3,3 +3,5 @@
 .metadata
 .project
 .settings
+build/
+*.class
