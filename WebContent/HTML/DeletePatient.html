@@ -7,7 +7,6 @@
 	</head>
 	<form id="myForm">
 	  Id : <input name="id"><br/>
-	  Name: <input name="name"><br/>
 	  <input type="submit" value="Update">
 	</form>
 	</body>
@@ -28,7 +27,7 @@
 			    });
 			
 			    // Set up our request
-			    XHR.open("PUT", "http://localhost:8080/Patient_Monitoring/rest/WebService/updatepatientdetails");
+			    XHR.open("DELETE", "http://localhost:8080/Patient_Monitoring/rest/WebService/deletepatient");
 			    
 			    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				
@@ -48,7 +47,7 @@
 			form.addEventListener("submit", function (event) {
 				event.preventDefault();
 				var formData = new FormData(form);
-			  	sendData(formData);
+				sendData(formData);
 			});
 			
 		});
