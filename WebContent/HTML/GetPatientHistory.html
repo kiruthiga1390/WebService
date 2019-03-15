@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="../CSS/animate.css" />
+<link rel="stylesheet" href="../CSS/style.css" />
+</head>
+<script>
+$(document).ready(function(){
+	$("#submit2").click(function(){
+		url = "http://localhost:8080/Patient_Monitoring/rest/WebService/getpatienthistory?patientId=" + 
+				$('#form2').find('input[name="patientId"]').val();
+		
+	    $.get(url, function(data){
+	      //alert("Data: " + data + "\nStatus: " + status);
+	      xmlString = (new XMLSerializer()).serializeToString(data);
+	      alert(xmlString);
+	      var xmldata = $.parseXML(xmlString);
+	      var jqObj = $(xmldata);
+	            var patient = jqObj.find('patient');
+	            var id= patient.find('id').text();
+	            var admissiondate= patient.find('admissiondate').text();
+	            var dischargeDate=patient.find('dischargeDate').text();
+	            var treatementName=patient.find('treatementName').text();
+	            var medicine =patient.find('medicine').text();
+	            var dosage =patient.find('dosage').text();
+
+	         
+	          var row = $('<tr />');
+	        
+	            $('<td>' + id + '</td>').appendTo(row);  
+	            $('<td>' + admissiondate + '</td>').appendTo(row); 
+	            $('<td>' + dischargeDate + '</td>').appendTo(row); 
+	            $('<td>' + treatementName + '</td>').appendTo(row); 
+	            $('<td>' + medicine + '</td>').appendTo(row);
+	            $('<td>' + dosage + '</td>').appendTo(row);
+	            
+	          $('#t02').append(row); 
+	           
+	       $('#t02').css("display","block");
+	    
+	  });
+	    
+    });
+});
+</script>
+<style>
+#t02 {
+	display: none;
+}
+</style>
+
+<body>
+	<div class="container">
+		<div>
+			<h1 id="title" class="hidden">Patient Monitoring</h1>
+		</div>
+
+		<div class="login-box animated fadeInUp">
+			<div class="box-header">
+				<h2>Get Patient History</h2>
+			</div>
+
+
+			<button type="button"
+				onclick="document.location.href = 'GetPatientDetail.html'">Get
+				Patient Details</button>
+			<button type="button"
+				onclick="document.location.href = 'GetPatientHistory.html'">Get
+				Patient History</button>
+			<button type="button"
+				onclick="document.location.href = 'GetPatientBilling.html'">Get
+				Patient Billing</button>
+            <button type="button" onclick="document.location.href = 'AddPatient.html'">Add New Patient</button>	
+			
+			
+			<form id="form2" action="#">
+				<b>Patient ID:</b> <input type="text" name="patientId"
+					id="patientId">
+				<button type="button" id="submit2">Submit</button>
+			</form>
+
+
+			<table id="t02" class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>ID</th>
+						<th>AdmissionDate</th>
+						<th>DischargeDate</th>
+						<th>TreatmentName</th>
+						<th>Medicine</th>
+						<th>Dosage</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

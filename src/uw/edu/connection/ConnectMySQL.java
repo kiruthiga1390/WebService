@@ -14,6 +14,7 @@ import uw.edu.VO.PatientHistoryVO;
 import uw.edu.VO.PatientVO;
 import uw.edu.VO.UserVO;
 import uw.edu.VO.VitalSignVO;
+import uw.edu.utils.MD5Hash;
 
 public class ConnectMySQL {
 	private Connection connection = null;

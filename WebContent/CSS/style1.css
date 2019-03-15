@@ -1,5 +1,5 @@
 body {
-	background: url("../images/main_bg.jpg") no-repeat center center fixed;
+	background: url("../images/bg_1.jpg") no-repeat center center fixed;
 	background-size: cover;
 	font-size: 16px;
 	font-family: 'Lato', sans-serif;
@@ -17,6 +17,7 @@ h1#title {
 	text-shadow: 0 0 10px rgba(0,0,0,0.8);
 	margin: 0 auto;
 	padding-top: 80px;
+	max-width: 300px;
 	text-align: center;
 	position: relative;
 	top: 0px;
@@ -53,7 +54,6 @@ p.small {
 /* Layout */
 .container {
 	margin: 0;
-	width:100%;
 }
 
 .top {
@@ -68,7 +68,7 @@ p.small {
 
 .login-box {
 	background-color: white;
-	max-width: 750px;
+	max-width: 340px;
 	margin: 0 auto;
 	position: relative;
 	top: 20px;
@@ -134,19 +134,6 @@ p.small {
 	opacity: 0.7;
 	transition: 0.5s;
 }
-.table{
-	margin-left: 20px;
-	font-weight: 700;
-	font-size: .8em;
-	color: #888;
-	letter-spacing: 1px;
-	border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-  text-align: left;
-}
-
 
 .selected {
 	color: #665851!important;

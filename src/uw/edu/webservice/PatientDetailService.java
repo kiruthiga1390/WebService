@@ -48,8 +48,8 @@ public class PatientDetailService {
 	@POST
 	@Path("/addpatientdetails")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String patient(@FormParam("id") String id,
-			@FormParam("name") String name,@FormParam("age") String age,@FormParam("address") String address,@FormParam("insurance") String insurance)  {
+	public Response patient(@FormParam("id") String id,
+			@FormParam("name") String name,@FormParam("age") String age,@FormParam("address") String address,@FormParam("insurance") String insurance) throws URISyntaxException  {
         //System.out.println("Inside get method"+patientId);
 		PatientVO patient = new PatientVO();
 		patient.setId(id);
@@ -58,13 +58,20 @@ public class PatientDetailService {
 		patient.setInsurance(insurance);
 		patient.setName(name);
 		
-		String output = addNewPatient(patient);
+		boolean flag = addNewPatient(patient);
 		
-		return output;
+		if (flag) { 
+			java.net.URI location = new java.net.URI("../HTML/PatientSuccess.html");
+		    return Response.temporaryRedirect(location).build(); 
+        } else { 
+        	java.net.URI location = new java.net.URI("../HTML/Error.html");
+		    return Response.temporaryRedirect(location).build(); 
+        } 
+		
 
 	}
 	
-	public String addNewPatient(PatientVO patient){
+	public boolean addNewPatient(PatientVO patient){
 		
 		try {
 			//System.out.println(" web service name is:"+patient.getName());
@@ -75,7 +82,7 @@ public class PatientDetailService {
 			//System.out.println(e.getMessage());
 			System.out.println("Patient details are not added.Please try again");
 		}
-		return "Patient Details are added Successfully";
+		return true;
 		
 	}
 	

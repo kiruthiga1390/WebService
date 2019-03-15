@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="../CSS/animate.css" />
+<link rel="stylesheet" href="../CSS/style.css" />
+</head>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$("#submit4")
+								.click(
+										function() {
+											url = "http://localhost:8080/Patient_Monitoring/rest/WebService/getbilling?patientId="
+													+ $('#form4')
+															.find(
+																	'input[name="patientId"]')
+															.val();
+
+											$
+													.getJSON(
+															url,
+															function(json) {
+																jsonString = JSON
+																		.stringify(json);
+																Jsonobj = JSON
+																		.parse(jsonString)
+																//alert(jsonString);
+																var tr;
+
+																//alert(Jsonobj.patient_id);
+																tr = $('<tr/>');
+																tr
+																		.append("<td>"
+																				+ Jsonobj.patient_id
+																				+ "</td>");
+																tr
+																		.append("<td>"
+																				+ Jsonobj.patient_name
+																				+ "</td>");
+																tr
+																		.append("<td>"
+																				+ Jsonobj.bill_amount
+																				+ "</td>");
+																tr
+																		.append("<td>"
+																				+ Jsonobj.treatment_name
+																				+ "</td>");
+																tr
+																		.append("<td>"
+																				+ Jsonobj.insurance
+																				+ "</td>");
+
+																$('#t04')
+																		.append(
+																				tr);
+
+																$('#t04')
+																		.css(
+																				"display",
+																				"block");
+															});
+
+										});
+
+					});
+</script>
+<style>
+#t04 {
+	display: none;
+}
+</style>
+
+<body>
+	<div class="container">
+		<div>
+			<h1 id="title" class="hidden">Patient Monitoring</h1>
+		</div>
+
+		<div class="login-box animated fadeInUp">
+			<div class="box-header">
+				<h2>Get Patient History</h2>
+			</div>
+
+
+			<button type="button"
+				onclick="document.location.href = 'GetPatientDetail.html'">Get
+				Patient Details</button>
+			<button type="button"
+				onclick="document.location.href = 'GetPatientHistory.html'">Get
+				Patient History</button>
+			<button type="button"
+				onclick="document.location.href = 'GetPatientBilling.html'">Get
+				Patient Billing</button>
+			<button type="button" onclick="document.location.href = 'AddPatient.html'">Add New Patient</button>	
+
+			
+			
+			<form id="form4" action="#">
+				<b>Patient ID:</b> <input type="text" name="patientId"
+					id="patientId">
+				<button type="button" id="submit4">Submit</button>
+			</form>
+
+
+			<table id="t04" class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Patient ID</th>
+						<th>Patient Name</th>
+						<th>Bill Amount</th>
+						<th>Treatment Name</th>
+						<th>Insurance</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
