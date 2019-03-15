@@ -33,4 +33,9 @@ public class PatientDetailController {
 			throw ex;
 		}	
 	}
+	
+	public void deletePatient(PatientVO patient) throws Exception {
+		ConnectMySQL db = new ConnectMySQL();
+		db.deletePatient(patient);
+	}
 }

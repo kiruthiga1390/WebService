@@ -186,6 +186,21 @@ public class ConnectMySQL {
 		ps.execute();
 		closeconnection();
 	}
+	
+	public void deletePatient(PatientVO patientToDelete) throws Exception { 
+		Connection connection = null;
+		try {
+			connection = getConnection();
+			String query = String.format("DELETE FROM patients WHERE id = '%s'", 
+					patientToDelete.getId());
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.execute();
+		} finally {
+			if(connection != null) {
+				closeconnection();
+			}
+		}
+	}
 					
 
 	//get patient history users from database - patient table

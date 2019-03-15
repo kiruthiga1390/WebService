@@ -94,6 +94,26 @@ public class PatientDetailService {
 		}
 	}
 	
+	@DELETE
+	@Path("/deletepatient")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public String delete(@FormParam("id") String id) {
+		if(id == null || id.isEmpty()) {
+			return "Failed! Input is null or empty";
+		}
+		
+		PatientVO patient = new PatientVO();
+		patient.setId(id);
+		PatientDetailController pc = new PatientDetailController();
+		try {
+			pc.deletePatient(patient);
+			return "Patient successfully deleted";
+		} catch(Exception ex) {
+			System.out.println(ex);
+			return "Failed to delete patient";
+		}
+	}
+	
 	public String addNewPatient(PatientVO patient){
 		
 		try {
