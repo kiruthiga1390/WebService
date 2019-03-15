@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Patient Information Update</title>
+		
+	</head>
+	<form id="myForm">
+	  Id : <input name="id"><br/>
+	  Name: <input name="name"><br/>
+	  <input type="submit" value="Update">
+	</form>
+	<!-- <body>
+		<form method action="http://localhost:8080/Patient_Monitoring/rest/WebService/updatepatientdetails" onsubmit="return submitForm(this);">
+			Patient ID:<input name="id" type="text"><br/>
+			Patient Name:<input name="name" type="text"><br/>
+			Patient Age:<input name="age" type="text"><br/>
+			Insurance:<input name="insurance" type="text"><br/>
+			Address:<input name="address" type="text"><br/>
+		<input type="submit" value="Submit">
+	</form> -->
+	</body>
+	<script>
+		window.addEventListener("load", function () {
+			
+			function sendData(formData) {
+			    var XHR = new XMLHttpRequest();
+			
+			    XHR.addEventListener("load", function(event) {
+			      alert(event.target.responseText);
+			      location.href = "http://localhost:8080/Patient_Monitoring/HTML/Home.html";
+			    });
+			
+			    // Define what happens in case of error
+			    XHR.addEventListener("error", function(event) {
+			      alert('Oops! Something went wrong.');
+			    });
+			
+			    // Set up our request
+			    XHR.open("PUT", "http://localhost:8080/Patient_Monitoring/rest/WebService/updatepatientdetails");
+			    
+			    XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				
+			    var paramStr = new URLSearchParams(formData).toString()
+			    XHR.send(paramStr);
+			  }
+			
+			
+			function doNothing() {
+				alert(document.getElementById("name").value);
+			}
+			
+		  	// Access the form element...
+		 	var form = document.getElementById("myForm");
+		  	
+			// ...and take over its submit event.
+			form.addEventListener("submit", function (event) {
+				event.preventDefault();
+				var formData = new FormData(form);
+			  	var params = "id=" + formData.get('id');
+			  
+				sendData(formData);
+			});
+			
+		});
+	/*
+			"use strict";
+			function submitForm(oFormElement)
+			{
+				// alert(oFormElement.method);
+				var params = "id=33&address=BB";
+				var xhr = new XMLHttpRequest();
+				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				xhr.onload = function(){ alert ("ERROR -> " + oFormElement.method +" ==> "+ xhr.responseText); }
+				xhr.onerror = function(){ alert ( "ERRROR---->" ); } 
+				xhr.open("PUT", oFormElement.action, true);
+				xhr.send(new FormData(oFormElement));
+				xhr.onload = function() {
+			    	alert(http.responseText)
+			    }
+				return false;
+			}
+			*/
+		</script>
+	<!-- <body>
+		<form action="http://localhost:8080/Patient_Monitoring/rest/WebService/updatepatientdetails" method="post">
+			Patient ID:<input name="id" type="text"><br/>
+			Patient Name:<input name="name" type="text"><br/>
+			Patient Age:<input name="age" type="text"><br/>
+			Insurance:<input name="insurance" type="text"><br/>
+			Address:<input name="address" type="text"><br/>
+			<input type="submit" value="Update">
+		</form>
+	</body> -->
+</html>
