@@ -4,6 +4,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -18,7 +19,7 @@ import uw.edu.VO.PatientVO;
 import uw.edu.controller.PatientDetailController;
 
 @Path("/WebService")
-public class GetPatientDetailService {
+public class PatientDetailService {
 	@GET
 	@Path("/getpatientdetails")
 	@Produces(MediaType.APPLICATION_XML)
@@ -78,6 +79,5 @@ public class GetPatientDetailService {
 		
 	}
 	
-
 
 }

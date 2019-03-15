@@ -20,4 +20,7 @@
 		<servlet-name>Jersey REST Service</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	<listener>
+    <listener-class>uw.edu.context.ServletContextClass</listener-class>
+</listener>
 </web-app>

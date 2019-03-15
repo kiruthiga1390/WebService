@@ -24,4 +24,6 @@ public class PatientDetailController {
 		throw e;
 		}
 		}
+	
+
 }

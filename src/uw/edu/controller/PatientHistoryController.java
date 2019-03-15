@@ -1,6 +1,5 @@
 package uw.edu.controller;
 import uw.edu.VO.PatientHistoryVO;
-
 import uw.edu.connection.ConnectMySQL;
 
 public class PatientHistoryController {

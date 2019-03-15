@@ -75,12 +75,33 @@ $(document).ready(function(){
 	       $('#t02').css("display","block");
 	    
 	  });
-    
-    
+	    
     });
-	
-	
-	
+	$("#submit4").click(function(){
+		url = "http://localhost:8080/Patient_Monitoring/rest/WebService/getbilling?patientId=" + 
+				$('#form4').find('input[name="patientId"]').val();		
+	    
+	    $.getJSON(url,
+	    	    function (json) {
+	    			jsonString = JSON.stringify(json);
+	    			Jsonobj = JSON.parse(jsonString)
+		      		alert(jsonString);
+	    	        var tr;
+	    	        
+	    	        	alert(Jsonobj.patient_id);
+	    	            tr = $('<tr/>');
+	    	            tr.append("<td>" + Jsonobj.patient_id + "</td>");
+	    	            tr.append("<td>" + Jsonobj.patient_name + "</td>");
+	    	            tr.append("<td>" + Jsonobj.bill_amount + "</td>");
+	    	            tr.append("<td>" + Jsonobj.treatment_name + "</td>");
+	    	            tr.append("<td>" + Jsonobj.insurance + "</td>");
+	    	            
+	    	        $('#t04').append(tr); 
+	 	           
+	    		    $('#t04').css("display","block");
+	    	    });
+	    
+    });
 	
 	$("#formButton").click(function(){
         $("#form1").toggle();
@@ -88,6 +109,10 @@ $(document).ready(function(){
 	
 	$("#formButton2").click(function(){
         $("#form2").toggle();
+    });
+
+	$("#formButton4").click(function(){
+        $("#form4").toggle();
     });
 });
 
@@ -113,6 +138,16 @@ display:none;
 display:none;
 
 }
+#form4 {
+
+display:none;
+
+}
+#t04 {
+
+display:none;
+
+}
 
 
 </style>
@@ -120,7 +155,9 @@ display:none;
 <body>
 <button type="button"  id="formButton">GetPatientDetail</button>
 <button type="button" id="formButton2">GetPatientHistory</button>
-<button type="button" onclick="myFunction()">GetBilling</button>
+<button type="button" id="formButton4">GetBilling</button>
+<!-- <button type="button"  id="formButton3">DeletePatient</button> -->
+
 
 
 <form id="form1" action="#" >
@@ -131,6 +168,11 @@ display:none;
   <b>Patient ID:</b> <input type="text" name="patientId" id="patientId">
    <button type="button" id="submit2">Submit</button>
 </form>
+<form id="form4" action="#" >
+  <b>Patient ID:</b> <input type="text" name="patientId" id="patientId">
+   <button type="button" id="submit4">Submit</button>
+</form>
+
 
 <table id="t01" border="2" style="width:auto" align="center">
   <tr>
@@ -150,6 +192,16 @@ display:none;
     <th>TreatmentName</th>
     <th>Medicine</th>
      <th>Dosage</th>
+  </tr>
+</table>
+
+<table id="t04" border="2" style="width:auto" align="center">
+  <tr>
+    <th>Patient ID</th>
+    <th>Patient Name</th>
+    <th>Bill Amount</th>
+    <th>Treatment Name</th>
+    <th>Insurance</th>
   </tr>
 </table>
 

@@ -7,10 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
-import uw.edu.VO.UserVO;
+import uw.edu.VO.BillingVO;
 import uw.edu.VO.PatientHistoryVO;
 import uw.edu.VO.PatientVO;
+import uw.edu.VO.UserVO;
+import uw.edu.VO.VitalSignVO;
 
 public class ConnectMySQL {
 	private Connection connection = null;
@@ -142,6 +145,7 @@ public class ConnectMySQL {
 						throw e;
 					}
 				}
+								
 
 				//get patient history users from database - patient table
 				public PatientHistoryVO  getPatientHistory(String patientId)
@@ -173,5 +177,60 @@ public class ConnectMySQL {
 						throw e;
 					}
 				}
+					
+					
+					public List<VitalSignVO>  getVitalSign()
+							throws Exception {
+						//System.out.println("Inside get patient details");
+						List<VitalSignVO> vitalSignList = new ArrayList<VitalSignVO>();
+						try {
+							Connection c = getConnection();
+							PreparedStatement ps = c
+									.prepareStatement("SELECT * FROM vital_signs");
+							ResultSet rs = ps.executeQuery();
+							while (rs.next()) {
+								VitalSignVO vitalSignVO = new VitalSignVO();
+								vitalSignVO.setPatient_id(rs.getString("patient_id"));
+								vitalSignVO.setPressure_diastolic(rs.getInt("pressure_diastolic"));
+								vitalSignVO.setPressure_systolic(rs.getInt("pressure_systolic"));
+								vitalSignVO.setPulse_rate(rs.getInt("pulse_rate"));
+								vitalSignVO.setTemperature(rs.getDouble("temperature"));
+								vitalSignVO.setRespiration_rate(rs.getInt("respiration_rate"));
+								vitalSignList.add(vitalSignVO);
+							}
+							closeconnection();
+							return vitalSignList;
+							
+						} catch (Exception e) {
+							throw e;
+						}
+				}
+					
+					public BillingVO  getPatientBilling(String patientId)
+							throws Exception {
+						//System.out.println("Inside get billing details sql");
+						BillingVO billing = new BillingVO();
+						try {
+							Connection c = getConnection();
+							
+							PreparedStatement pss = c
+									.prepareStatement("SELECT * FROM billing where patient_id= ?");
+							pss.setString(1,patientId);
+							ResultSet rsd = pss.executeQuery();
+							while(rsd.next()){
+								billing.setPatient_id(rsd.getString("patient_id"));	
+								billing.setPatient_name(rsd.getString("patient_name"));
+								billing.setBill_amount(rsd.getDouble("bill_amount"));	
+								billing.setTreatment_name(rsd.getString("treatment"));	
+								billing.setInsurance(rsd.getString("insurance"));
+						
+							}
+							closeconnection();
+							return billing;
+							
+						} catch (Exception e) {
+							throw e;
+						}
+					}
 
 }
