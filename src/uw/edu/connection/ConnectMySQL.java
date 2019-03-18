@@ -112,6 +112,9 @@ public class ConnectMySQL {
 			patient.setInsurance(rs.getString("insurance"));	
 			patient.setAddress(rs.getString("address"));
 			patient.setId(rs.getString("id"));
+			patient.setGender(rs.getString("gender"));
+			patient.setHeight(rs.getInt("height"));
+			patient.setWeight(rs.getDouble("weight"));
 			}
 			closeconnection();
 			return patient;
@@ -129,8 +132,8 @@ public class ConnectMySQL {
 		try {
 			Connection c = getConnection();
 			
-			String query = "insert into patients (id, name, age, insurance, address)"
-			        + " values (?, ?, ?, ?, ?)";
+			String query = "insert into patients (id, name, age, insurance, address,height,weight,gender)"
+			        + " values (?, ?, ?, ?, ?,?,?,?)";
 			
 			PreparedStatement ps = c
 					.prepareStatement(query);
@@ -139,6 +142,9 @@ public class ConnectMySQL {
 			ps.setString(3,patient.getAge());
 			ps.setString(4,patient.getInsurance());
 			ps.setString(5,patient.getAddress());
+			ps.setInt(6, patient.getHeight());
+			ps.setDouble(7, patient.getWeight());
+			ps.setString(8, patient.getGender());
 			//System.out.println("stmt is"+ps);
 			ps.execute();
 			closeconnection();
@@ -253,6 +259,7 @@ public class ConnectMySQL {
 				vitalSignVO.setPulse_rate(rs.getInt("pulse_rate"));
 				vitalSignVO.setTemperature(rs.getDouble("temperature"));
 				vitalSignVO.setRespiration_rate(rs.getInt("respiration_rate"));
+				vitalSignVO.setCaretaker_no(rs.getString("caretaker_no"));
 				vitalSignList.add(vitalSignVO);
 			}
 			closeconnection();

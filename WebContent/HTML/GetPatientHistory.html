@@ -20,7 +20,7 @@ $(document).ready(function(){
 	    $.get(url, function(data){
 	      //alert("Data: " + data + "\nStatus: " + status);
 	      xmlString = (new XMLSerializer()).serializeToString(data);
-	      alert(xmlString);
+	      //alert(xmlString);
 	      var xmldata = $.parseXML(xmlString);
 	      var jqObj = $(xmldata);
 	            var patient = jqObj.find('patient');
@@ -80,7 +80,7 @@ $(document).ready(function(){
             <button type="button" onclick="document.location.href = 'AddPatient.html'">Add New Patient</button>	
 			<button type="button" onclick="document.location.href = 'DeletePatient.html'">Delete Patient details</button>	
 			<button type="button" onclick="document.location.href = 'UpdatePatient.html'">Update Patient details</button>
-			
+			<button type="button" onclick="document.location.href = 'DietPlan.html'">Generate Diet plan</button>
 			<form id="form2" action="#">
 				<b>Patient ID:</b> <input type="text" name="patientId"
 					id="patientId">

@@ -11,7 +11,32 @@ public class PatientVO {
 	private String age;
 	private String insurance;
 	private String address;
+	private int height;
+	private double weight;
+	private String gender;
 	
+	@XmlElement
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	@XmlElement
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	@XmlElement
+	public double getWeight() {
+		return weight;
+	}
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
 	@XmlElement
 	public String getId() {
 		return id;

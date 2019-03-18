@@ -37,6 +37,7 @@ public class NotificationController {
 			int pressure_systolic = vital.getPressure_systolic();
 			double temperature = vital.getTemperature();
 			int resp_rate=vital.getRespiration_rate();
+			String caretaker_no =vital.getCaretaker_no();
 			
 			if (pulse <60 || pulse >100){
 				flag = true;
@@ -63,7 +64,7 @@ public class NotificationController {
 			
 			if (flag){
 				SMSNotificationService notifyservice = new SMSNotificationService();
-				notifyservice.sendNotification(message);
+				notifyservice.sendNotification(message,caretaker_no);
 			}
 			
 		}

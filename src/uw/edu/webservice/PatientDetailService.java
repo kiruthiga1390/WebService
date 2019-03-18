@@ -50,7 +50,8 @@ public class PatientDetailService {
 	@Path("/addpatientdetails")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response patient(@FormParam("id") String id,
-			@FormParam("name") String name,@FormParam("age") String age,@FormParam("address") String address,@FormParam("insurance") String insurance) throws URISyntaxException  {
+			@FormParam("name") String name,@FormParam("age") String age,@FormParam("address") String address,@FormParam("insurance") String insurance,
+			@FormParam("gender") String gender,@FormParam("height") int height,@FormParam("weight") double weight) throws URISyntaxException  {
         //System.out.println("Inside get method"+patientId);
 		PatientVO patient = new PatientVO();
 		patient.setId(id);
@@ -58,6 +59,9 @@ public class PatientDetailService {
 		patient.setAge(age);
 		patient.setInsurance(insurance);
 		patient.setName(name);
+		patient.setGender(gender);
+		patient.setHeight(height);
+		patient.setWeight(weight);
 		
 		boolean flag = addNewPatient(patient);
 		

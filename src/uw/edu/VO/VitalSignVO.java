@@ -8,6 +8,15 @@ public class VitalSignVO {
 	private double temperature;
 	private int pressure_systolic;
 	private int respiration_rate;
+	private String caretaker_no;
+	
+	
+	public String getCaretaker_no() {
+		return caretaker_no;
+	}
+	public void setCaretaker_no(String caretaker_no) {
+		this.caretaker_no = caretaker_no;
+	}
 	public String getPatient_id() {
 		return patient_id;
 	}

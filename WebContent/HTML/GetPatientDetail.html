@@ -29,8 +29,11 @@ $(document).ready(function(){
 	            var age=patient.find('age').text();
 	            var insurance=patient.find('insurance').text();
 	            var address =patient.find('address').text();
+	            var gender =patient.find('gender').text();
+	            var height =patient.find('height').text();
+	            var weight =patient.find('weight').text();
 	      
-
+	          var tbody = $('<tbody/>');
 	          var row = $('<tr />');
 	        
 	            $('<td>' + id + '</td>').appendTo(row);  
@@ -38,8 +41,12 @@ $(document).ready(function(){
 	            $('<td>' + age + '</td>').appendTo(row); 
 	            $('<td>' + insurance + '</td>').appendTo(row); 
 	            $('<td>' + address + '</td>').appendTo(row);
+	            $('<td>' + gender + '</td>').appendTo(row);
+	            $('<td>' + height + '</td>').appendTo(row);
+	            $('<td>' + weight + '</td>').appendTo(row);
 	          
-	          $('#t01').append(row); 
+	            tbody.append(row);
+	            $('#t01').append(tbody); 
 	           
 	       $('#t01').css("display","block");
 	    
@@ -78,7 +85,8 @@ $(document).ready(function(){
 				Patient Billing</button>
 			<button type="button" onclick="document.location.href = 'AddPatient.html'">Add New Patient</button>	
 			<button type="button" onclick="document.location.href = 'DeletePatient.html'">Delete Patient details</button>	
-				<button type="button" onclick="document.location.href = 'UpdatePatient.html'">Update Patient details</button>	
+				<button type="button" onclick="document.location.href = 'UpdatePatient.html'">Update Patient details</button>
+				<button type="button" onclick="document.location.href = 'DietPlan.html'">Generate Diet plan</button>	
 				
 			<form id="form1" action="#">
 				<b>Patient ID:</b> <input type="text" name="patientId"
@@ -95,6 +103,9 @@ $(document).ready(function(){
 						<th>Age</th>
 						<th>Insurance</th>
 						<th>Address</th>
+						<th>Gender</th>
+						<th>Height</th>
+						<th>Weight</th>
 					</tr>
 				</thead>
 			</table>
