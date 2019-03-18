@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" href="../CSS/animate.css"/>
+<link rel="stylesheet" href="../CSS/style.css"/>
+</head>
+
+		
+	<body>
+	<div class="container">
+		<div class="top">
+			<h1 id="title" class="hidden">Patient Monitoring</h1>
+		</div>	
+			<div class="login-box animated fadeInUp">
+				<div class="box-header">
+					<h2>Add New Patient </h2>
+				</div>
+				<button type="button"
+				onclick="document.location.href = 'GetPatientDetail.html'">Get
+				Patient Details</button>
+			<button type="button"
+				onclick="document.location.href = 'GetPatientHistory.html'">Get
+				Patient History</button>
+			<button type="button"
+				onclick="document.location.href = 'GetPatientBilling.html'">Get
+				Patient Billing</button>
+			<button type="button" onclick="document.location.href = 'AddPatient.html'">Add New Patient</button>	
+			<button type="button" onclick="document.location.href = 'DeletePatient.html'">Delete Patient details</button>	
+				<button type="button" onclick="document.location.href = 'UpdatePatient.html'">Update Patient details</button>
+				
+				<form id="myForm">
+		<label>Failed to updated patient details :(</label>
+		
+	</form>
+					
+			</div>
+		</div>
+		</body>
+		</html>
