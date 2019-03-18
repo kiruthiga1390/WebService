@@ -1,6 +1,4 @@
 package uw.edu.webservice;
-import java.net.URISyntaxException;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -9,10 +7,6 @@ import javax.ws.rs.core.MediaType;
 
 //import uw.edu.VO.PatientVO;
 //import uw.edu.controller.PatientDetailController;
-
-
-
-
 import uw.edu.VO.BillingVO;
 import uw.edu.VO.PatientHistoryVO;
 import uw.edu.controller.PatientHistoryController;

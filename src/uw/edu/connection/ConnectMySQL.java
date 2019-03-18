@@ -14,7 +14,7 @@ import uw.edu.VO.PatientHistoryVO;
 import uw.edu.VO.PatientVO;
 import uw.edu.VO.UserVO;
 import uw.edu.VO.VitalSignVO;
-import uw.edu.utils.MD5Hash;
+
 
 public class ConnectMySQL {
 	private Connection connection = null;
@@ -120,6 +120,7 @@ public class ConnectMySQL {
 			return patient;
 			
 		} catch (Exception e) {
+			System.out.println(e);
 			throw e;
 		}
 	}
@@ -150,6 +151,7 @@ public class ConnectMySQL {
 			closeconnection();
 			
 		} catch (Exception e) {
+			System.out.println(e);
 			throw e;
 		}
 	}
@@ -158,6 +160,11 @@ public class ConnectMySQL {
 		throws Exception {
 		
 		PatientVO patientToUpdate = getPatientDetails(patient.getId());
+		if(patientToUpdate.getId() == "NOT_DEFINED") {
+			String errorMessage = String.format("Patient with id '%s' not found.", patient.getId());
+			System.out.println(errorMessage);
+			throw new Exception(errorMessage);
+		}
 		
 		if(patient.getAge() != null && !patient.getAge().isEmpty()) {
 			patientToUpdate.setAge(patient.getAge());
@@ -173,20 +180,27 @@ public class ConnectMySQL {
 			patientToUpdate.setInsurance(newInsurance);
 		}
 		
-		// TODO(Siri) should we allow update of name ??
-		String newName = patient.getName();
-		if(newName != null && !newName.isEmpty()) {
-			patientToUpdate.setName(newName);
+		String height = String.valueOf(patient.getHeight());
+		if(height != null && !height.isEmpty()) {
+			patientToUpdate.setHeight(Integer.parseInt(height));
 		}
+		
+		String weight = String.valueOf(patient.getWeight());
+		if(height != null && !height.isEmpty()) {
+			patientToUpdate.setWeight(Double.parseDouble(weight));
+		}
+		
 		
 		Connection c = getConnection();
 		
-		String query = String.format("UPDATE patients SET name = '%s', age = '%s',  insurance ='%s', address = '%s' WHERE id = '%s'",
-				patientToUpdate.getName(),
+		String query = String.format("UPDATE patients SET  age = '%s',  insurance ='%s', address = '%s',height ='%s',weight='%s' WHERE id = '%s'",
 				patientToUpdate.getAge(),
 				patientToUpdate.getInsurance(),
 				patientToUpdate.getAddress(),
+				patientToUpdate.getHeight(),
+		        patientToUpdate.getWeight(),
 				patientToUpdate.getId());
+		        
 				
 		PreparedStatement ps = c
 				.prepareStatement(query);
