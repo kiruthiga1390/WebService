@@ -1,5 +1,7 @@
 package uw.edu.webservice;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
@@ -15,6 +17,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import org.glassfish.jersey.internal.Errors.ErrorMessage;
 
 import uw.edu.VO.PatientVO;
 import uw.edu.controller.PatientDetailController;
@@ -83,6 +87,7 @@ public class PatientDetailService {
 		} catch (Exception e) {
 			//System.out.println(e.getMessage());
 			System.out.println("Patient details are not added.Please try again");
+			return false;
 		}
 
 		return true;
@@ -94,15 +99,17 @@ public class PatientDetailService {
 	@PUT
 	@Path("/updatepatientdetails")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	public String update(@FormParam("id") String id,
+	public Response update(@FormParam("id") String id,
 			@FormParam("name") String name,
 			@FormParam("age") String age,
 			@FormParam("address") String address,
-			@FormParam("insurance") String insurance)  {
+			@FormParam("insurance") String insurance) throws URISyntaxException {
         System.out.println("Inside update method -> "+id + ".");
         if(id == null || id.isEmpty()) {
-        	return "Failed! Input is null";
+        	System.out.println("Failed! Input is null");
+        	return buildErrorResponse("Input is null", "PatientUpdateError.html", Response.Status.BAD_REQUEST);
         }
+        
 		PatientVO patient = new PatientVO();
 		patient.setId(id);
 		patient.setAddress(address);
@@ -113,10 +120,11 @@ public class PatientDetailService {
 		PatientDetailController pc = new PatientDetailController();
 		try {
 			pc.updatePatient(patient);
-			return "Patient info successfully update";
+			java.net.URI location = new java.net.URI("../HTML/PatientUpdateSuccess.html");
+		    return Response.temporaryRedirect(location).status(Response.Status.OK).build(); 
 		} catch(Exception ex) {
 			System.out.println(ex);
-			return "Failed to update patient info";
+			return buildErrorResponse(ex.getMessage(), "PatientUpdateError.html", Response.Status.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -140,5 +148,13 @@ public class PatientDetailService {
 		}
 	}
 	
+	private Response buildErrorResponse(String errorMessage, String redirection, Response.Status status) 
+			throws URISyntaxException {
+		java.net.URI location = new java.net.URI("../HTML/" + redirection);
+		return Response.temporaryRedirect(location)
+				.status(status)
+				.entity(errorMessage)
+				.build();
+	}
 	
 }

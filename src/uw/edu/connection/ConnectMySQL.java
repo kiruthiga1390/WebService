@@ -117,6 +117,7 @@ public class ConnectMySQL {
 			return patient;
 			
 		} catch (Exception e) {
+			System.out.println(e);
 			throw e;
 		}
 	}
@@ -144,6 +145,7 @@ public class ConnectMySQL {
 			closeconnection();
 			
 		} catch (Exception e) {
+			System.out.println(e);
 			throw e;
 		}
 	}
@@ -152,6 +154,11 @@ public class ConnectMySQL {
 		throws Exception {
 		
 		PatientVO patientToUpdate = getPatientDetails(patient.getId());
+		if(patientToUpdate.getId() == "NOT_DEFINED") {
+			String errorMessage = String.format("Patient with id '%s' not found.", patient.getId());
+			System.out.println(errorMessage);
+			throw new Exception(errorMessage);
+		}
 		
 		if(patient.getAge() != null && !patient.getAge().isEmpty()) {
 			patientToUpdate.setAge(patient.getAge());
