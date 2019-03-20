@@ -44,13 +44,6 @@ public class GetDietPlanService {
          return recipies;
 	}
 
-//	public static void main(String[]args) throws IOException{
-//		GetDietPlanService obj = new GetDietPlanService();
-//		String recipies = obj.getdiet("777");
-//		for(String recipie : recipies) {
-//			System.out.println(recipie);
-//		}
-//	}
 	
 	public String getRecepies(double bmi) throws IOException {
 		String calorieType = "";
@@ -82,12 +75,6 @@ public class GetDietPlanService {
 		//System.out.println("response is"+response.toString());
 		
 		return response.toString();
-
-//		JsonObject jobj = new Gson().fromJson(response.toString(), JsonObject.class);
-//		for(JsonElement recipe : jobj.get("hits").getAsJsonArray()) {
-//			result.add(recipe.getAsJsonObject().get("recipe").getAsJsonObject().get("label").getAsString());
-//		}
-//		return result;
 		
 	}
 

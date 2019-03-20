@@ -153,6 +153,12 @@ th, td {
 	transition: 0.5s;
 }
 
+.login-box input:submit{
+	background-color: #665851;
+	margin-top: 0;
+	border-radius: 5px 5px 0 0;
+}
+
 /* Animation Delay */
 #logo {
   -webkit-animation-duration: 1s;

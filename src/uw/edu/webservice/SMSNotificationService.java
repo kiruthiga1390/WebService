@@ -8,6 +8,9 @@ public class SMSNotificationService {
 	  public static final String ACCOUNT_SID = "XXXXXXXXXXXXXX";
 	  public static final String AUTH_TOKEN = "XXXXXXXXXXXX";
 	  
+//	  public static final String ACCOUNT_SID = "ACcb1ee2d94ff1e158f945eaec38fd1c2e";
+//	  public static final String AUTH_TOKEN = "66b05150b766ed526fd6b8948d8fb8fa";
+	  
 	 
 	  
 	  public void sendNotification(String notify, String caretaker_no) {

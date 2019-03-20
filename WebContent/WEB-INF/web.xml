@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>com.vogella.jersey.first</display-name>
 	<welcome-file-list>
-		<welcome-file>LoginForm.html</welcome-file>
+		<welcome-file>/HTML/LoginForm.html</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>Jersey REST Service</servlet-name>
