@@ -4,6 +4,10 @@ import uw.edu.VO.PatientVO;
 import uw.edu.connection.ConnectMySQL;
 
 public class PatientDetailController {
+	/* Handles all patient details like getting patient details and adding new patient details
+	 * updating and deleting existing patient details.
+	 * 
+	 */
 	public PatientVO getPatientDetails(String patientId)throws Exception {
 		PatientVO patient = null;
 		try {

@@ -1,7 +1,9 @@
 package uw.edu.VO;
 
 public class VitalSignVO {
-	
+	/*
+	 * This class contains all the attributes of patient's vital signs
+	 */
 	private String patient_id;
 	private int pulse_rate;
 	private int pressure_diastolic;

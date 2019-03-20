@@ -6,7 +6,7 @@ import uw.edu.VO.UserVO;
 import uw.edu.connection.ConnectMySQL;
 
 public class LoginController {
-
+/* handles the login functionality*/
 	public ArrayList<UserVO> getAllUsersList()throws Exception {
 		ArrayList<UserVO> userList = null;
 		try {

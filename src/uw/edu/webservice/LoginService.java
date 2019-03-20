@@ -14,6 +14,9 @@ import uw.edu.VO.UserVO;
 import uw.edu.controller.LoginController;
 
 @Path("/WebService")
+/*
+ * This web service handles  the  login functionality.
+ */
 public class LoginService {
 
 	@POST

@@ -5,6 +5,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "patient")
 public class PatientVO {
+	/*
+	 * This class contains all the attributes of patient 
+	 */
 	private String id;
 	private String name;
 	private String age;

@@ -12,7 +12,10 @@ import uw.edu.webservice.SMSNotificationService;
 
 public class NotificationController {
 	
-
+/* handles the notification functionality*/
+	
+	
+	// get vital signs from vital signs table
 	public void getVitalSigns()throws Exception {
 		List<VitalSignVO> vitalSignList = null;
 		try {
@@ -25,7 +28,9 @@ public class NotificationController {
 		}
 		}
 	
-	
+	/*check if the vital signs are within the normal range.
+	 * If not create the message which should be notified to the care taker.
+	 * */
 	public void CheckVitalSigns(List<VitalSignVO> vitalList){
 		boolean flag = false;
 		String message = null;

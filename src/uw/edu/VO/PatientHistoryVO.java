@@ -7,6 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "patient")
 
 public class PatientHistoryVO {
+	/*
+	 * This class contains all the attributes of patient history
+	 */
 	private String id;
 	private String admissiondate;
 	private String dischargeDate;

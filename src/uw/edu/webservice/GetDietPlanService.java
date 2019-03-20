@@ -24,6 +24,9 @@ import uw.edu.VO.PatientVO;
 import uw.edu.controller.PatientDetailController;
 
 @Path("/WebService")
+/*
+ * This web service handles  the functionality of generating diet plan based on patient BMI
+ */
 
 public class GetDietPlanService {
 	

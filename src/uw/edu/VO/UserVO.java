@@ -1,6 +1,9 @@
 package uw.edu.VO;
 
 public class UserVO {
+	/*
+	 * This class contains all the attributes of user
+	 */
 	private String username;
 	private String password;
 	public String getUsername() {

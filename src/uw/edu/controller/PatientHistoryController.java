@@ -3,6 +3,7 @@ import uw.edu.VO.PatientHistoryVO;
 import uw.edu.connection.ConnectMySQL;
 
 public class PatientHistoryController {
+	// handles all the patient history details.
 	public PatientHistoryVO getPatientHistory(String patientId)throws Exception {
 		PatientHistoryVO patient = null;
 		try {

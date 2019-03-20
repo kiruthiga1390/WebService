@@ -1,6 +1,7 @@
 package uw.edu.connection;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,11 @@ import uw.edu.VO.UserVO;
 import uw.edu.VO.VitalSignVO;
 
 
+/* This class handles the connection with mysql database and all the interaction with 
+ * database are done here.
+ * 
+ */
+
 public class ConnectMySQL {
 	private Connection connection = null;
 	private ResultSet rs = null;
@@ -23,6 +29,7 @@ public class ConnectMySQL {
 	
 	String connectionURL = "jdbc:mysql://localhost:3306/patientmonitoring";
 	
+	/* creating connection with the mysql database*/
 	private void createconnection() {
 		try {
 			// Load the database driver
@@ -53,6 +60,7 @@ public class ConnectMySQL {
 
 	}
 	
+	/* closing connection with the mysql database*/
 	public void closeconnection() {
 		try {
 			if (st != null) {
@@ -156,6 +164,7 @@ public class ConnectMySQL {
 		}
 	}
 	
+	//update patient details in database -patients table
 	public void updatePatientInfo(PatientVO patient) 
 		throws Exception {
 		
@@ -208,6 +217,7 @@ public class ConnectMySQL {
 		closeconnection();
 	}
 	
+	//delete patients from database -patients table
 	public void deletePatient(PatientVO patientToDelete) throws Exception { 
 		Connection connection = null;
 		try {
@@ -255,7 +265,7 @@ public class ConnectMySQL {
 		}
 	}
 		
-		
+	// get vital signs from the database- vital signs table	
 	public List<VitalSignVO>  getVitalSign()
 			throws Exception {
 		//System.out.println("Inside get patient details");
@@ -284,6 +294,7 @@ public class ConnectMySQL {
 		}
 	}
 	
+	//get billing details of the patient - billing table
 	public BillingVO  getPatientBilling(String patientId)
 			throws Exception {
 		//System.out.println("Inside get billing details sql");

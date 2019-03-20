@@ -1,6 +1,9 @@
 package uw.edu.VO;
 
 public class BillingVO {
+	/*
+	 * This class contains all the attributes of billing
+	 */
 	private String patient_id;
 	private String patient_name;
 	private Double bill_amount;

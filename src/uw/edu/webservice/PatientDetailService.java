@@ -24,6 +24,10 @@ import uw.edu.VO.PatientVO;
 import uw.edu.controller.PatientDetailController;
 
 @Path("/WebService")
+/*
+ * This web service handles  the functionality of generating patient details based on  RFID,
+ * updating patient details and deleting patient details and of adding new patient details.
+ */
 public class PatientDetailService {
 	@GET
 	@Path("/getpatientdetails")

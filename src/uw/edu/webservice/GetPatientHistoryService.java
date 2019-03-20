@@ -12,6 +12,9 @@ import uw.edu.VO.PatientHistoryVO;
 import uw.edu.controller.PatientHistoryController;
 
 @Path("/WebService")
+/*
+ * This web service handles  the functionality of generating history of patient details based on  RFID
+ */
 public class GetPatientHistoryService {
 	@GET
 	@Path("/getpatienthistory")

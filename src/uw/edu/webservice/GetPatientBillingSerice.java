@@ -11,6 +11,10 @@ import uw.edu.controller.PatientBillingController;
 
 
 @Path("/WebService")
+/*
+ * This web service handles  the functionality of generating billing details based on patient's RFID
+ */
+
 public class GetPatientBillingSerice {
 	
 	@GET
